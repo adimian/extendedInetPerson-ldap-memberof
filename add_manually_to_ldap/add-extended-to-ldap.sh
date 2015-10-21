@@ -1,0 +1,1 @@
+ldapadd -Q -Y EXTERNAL -H ldapi:/// -c -f extendedInetPerson.ldif

@@ -1,0 +1,8 @@
+make sure the ldapi:/// is running as part of the host
+
+'ps aux | grep slapd' should give you something like this
+/usr/sbin/slapd -h ldap:/// ldapi:/// -u openldap -g openldap -d 0
+
+it is important, otherwise the ldapadd process is not able to contact ldap
+
+if ldapadd is not a know process, install ldap-utils
