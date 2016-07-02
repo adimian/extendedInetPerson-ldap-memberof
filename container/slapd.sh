@@ -31,13 +31,12 @@ slapd slapd/dump_database select when needed
 EOF
 
   dpkg-reconfigure -f noninteractive slapd
-
+  (sleep 10; /tmp/install-schema.sh)&
   touch /var/lib/ldap/docker_bootstrapped
-  mv /etc/service/slapd/cn\=\{4\}extendedinetperson.ldif /etc/ldap/slapd.d/cn\=config/cn\=schema
 else
   status "found already-configured slapd"
 fi
 
 status "starting slapd"
 set -x
-exec /usr/sbin/slapd -h "ldap:///" -u openldap -g openldap -d 0
+exec /usr/sbin/slapd -h "ldap:/// ldapi:///" -u openldap -g openldap -d 0
